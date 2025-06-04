@@ -22,22 +22,51 @@ In many real-world applications, class names may be unavailable, ambiguous, or p
 **We introduce _SiM_ (Similarity Mapping)** — a simple yet powerful baseline for vocabulary-free few-shot learning with VLMs. Unlike conventional approaches that rely on textual labels and manual prompt design, SiM bypasses vocabulary entirely: it learns a **linear mapping** between similarity scores (computed between input images and a fixed set of generic prompts) and target classes — enabling classification without access to any class names.
 
 ### In short:
-- 🔤 **Vocabulary-free**: no class names or handcrafted prompts required.
+- 🔤 **Vocabulary-free**: no class names or manually handcrafted prompts required.
 - ⚡ **Lightweight**: the mapping is learned in under one second.
-- 🔍 **Interpretable**: learned weights reveal how target classes align with known concepts.
-
+- 🔍 **Interpretable**: learned weights can reveal how target classes align with known concepts.
 
 ---
 
 
+
 ## Table of Contents
 
-1. [Installation](#installation)  
-2. [Basic Usage](#basic-usage)  
-3. [Reproducing Results](#reproducing-results)  
-4. [Citation](#citation)  
-5. [Contact](#contact)
+1. [Installation](#installation)
+2. [Method](#method)
+3. [Basic Usage](#basic-usage)  
+4. [Reproducing Results](#reproducing-results)  
+5. [Citation](#citation)  
+6. [Contact](#contact)
 
+
+---
+
+## Method
+
+**Similarity Mapping (SiM)** classifies target images by learning a linear mapping between similarity scores and class labels, using a fixed set of generic prompts (textual or visual).
+
+The method works in two steps:
+
+1. **Training**:  
+   A small set of labeled images (shots) is compared to a predefined set of `K` generic prompts.  
+   The resulting similarity matrix `L ∈ ℝ^{N × K}` is linearly mapped to the one-hot labels `Y ∈ ℝ^{N × C}` using regularized least-squares:
+
+   ```math
+   W^* = \arg\min_W \| Y - L W \|_F^2 + \lambda \|W\|_F^2
+   ```
+   
+2. **Inference**:  
+For a test image, similarity scores `l ∈ ℝ^{1 × K}` are computed with the same prompts.  
+The predicted class scores are given by `s = l W`, and classification is done by `argmax(s)`.
+
+This procedure is summarized in the figure below:
+<div align="center" style="margin-top:20px; margin-bottom:20px;">
+<img src="method.png" alt="method" width="1000">
+</div>
+
+\
+No class names are required: all operations are based on similarity scores with generic prompts. The method assumes access only to a pretrained Vision-Language Model and does not modify its internal weights.
 
 ---
 
