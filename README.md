@@ -1,4 +1,4 @@
-# Vocabulary-free few-shot learning for Vision-Language Models [8<sup>th</sup>MULA@CVPR 2025]
+# Vocabulary-free few-shot learning for Vision-Language Models
   
 The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*]().
 
