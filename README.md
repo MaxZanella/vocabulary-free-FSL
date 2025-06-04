@@ -15,7 +15,7 @@ Authors:
 In many real-world applications, class names may be unavailable, ambiguous, or poorly defined — yet we still want to adapt Vision-Language Models (VLMs) using only a few visual examples. As shown in the figure below, traditional few-shot learning methods rely heavily on known class names and handcrafted prompts, whereas **vocabulary-free few-shot learning** eliminates this dependency by leveraging only generic prompts (e.g., from ImageNet classes):
 
 <div align="center" style="margin-top:20px; margin-bottom:20px;">
-  <img src="intro.png" alt="vocab-free-fsl" width="500">
+  <img src="figures/intro.png" alt="vocab-free-fsl" width="500">
 </div>
 
 \
@@ -61,7 +61,7 @@ The predicted class scores are given by `s = l W`, and classification is done by
 
 This procedure is summarized in the figure below:
 <div align="center" style="margin-top:20px; margin-bottom:20px;">
-<img src="method.png" alt="method" width="1000">
+<img src="figures/method.png" alt="method" width="1000">
 </div>
 
 \
@@ -73,17 +73,17 @@ The linear mapping `W` not only enables classification but can also be used to i
 
 **With ImageNet textual prompts (e.g., “a photo of a {class}”)**:
 <div align="center" style="margin-top:10px; margin-bottom:20px;">
-<img src="visu_text.png" alt="text-prompts" width="600">
+<img src="figures/visu_text.png" alt="text-prompts" width="600">
 </div>
 
 **With WordNet-based textual prompts**:
 <div align="center" style="margin-top:10px; margin-bottom:20px;">
-<img src="visu_wordnet.png" alt="wordnet-prompts" width="600">
+<img src="figures/visu_wordnet.png" alt="wordnet-prompts" width="600">
 </div>
 
 **With images from ImageNet**:
 <div align="center" style="margin-top:10px; margin-bottom:20px;">
-<img src="visu_images.png" alt="image-prompts" width="600">
+<img src="figures/visu_images.png" alt="image-prompts" width="600">
 </div>
 
 \
