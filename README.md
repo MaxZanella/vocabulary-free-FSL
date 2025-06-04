@@ -68,6 +68,28 @@ This procedure is summarized in the figure below:
 \
 No class names are required: all operations are based on similarity scores with generic prompts. The method assumes access only to a pretrained Vision-Language Model and does not modify its internal weights.
 
+### Interpretation
+
+The linear mapping `W` not only enables classification but can also be used to inspect which generic prompts are most influential for each class. Below are examples of such interpretations for different types of prompts used in the paper:
+
+**With ImageNet textual prompts (e.g., “a photo of a {class}”)**:
+<div align="center" style="margin-top:10px; margin-bottom:20px;">
+<img src="visu_text.png" alt="text-prompts" width="600">
+</div>
+
+**With WordNet-based textual prompts**:
+<div align="center" style="margin-top:10px; margin-bottom:20px;">
+<img src="visu_wordnet.png" alt="wordnet-prompts" width="600">
+</div>
+
+**With images from ImageNet**:
+<div align="center" style="margin-top:10px; margin-bottom:20px;">
+<img src="visu_images.png" alt="image-prompts" width="600">
+</div>
+
+\
+These visualizations illustrate how the learned mapping can highlight semantically related concepts even in the absence of class names.
+
 ---
 
 ## Installation
