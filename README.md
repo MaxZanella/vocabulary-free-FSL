@@ -12,6 +12,11 @@ Authors:
 
 ## Quick Overview
 
+   <div align="center" style="margin-top:20px; margin-bottom:20px;">
+      <img src="images/realistic_batch.png" alt="vocab-free-fsl" width="500">
+      <p style="font-size:75%;"><em> Current few-shot learning methods assume that target class names are known, often requiring manually fine-tuned prompts. In vocabulary-free few-shot learning, we remove this constraint and rely solely on generic prompts (e.g., derived from ImageNet classes). </em></p>
+   </div>
+
 We propose **SiM** (Similarity Mapping), a simple yet effective baseline for **vocabulary-free few-shot learning** using Vision-Language Models (VLMs). In contrast to traditional few-shot methods that rely on predefined class names and carefully designed prompts, SiM classifies target images using **similarity scores** with a fixed set of **generic prompts** — without requiring any vocabulary or handcrafted prompts.
 
 SiM is:
