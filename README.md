@@ -30,9 +30,6 @@ Unlike conventional approaches that rely on textual labels and manual prompt des
 - ⚡ **Lightweight**: the mapping is learned in under one second.
 - 🔍 **Interpretable**: learned weights reveal how target classes align with known concepts.
 
-SiM sets a new baseline for low-shot learning in **open-vocabulary** or **unknown-vocabulary** scenarios, offering both simplicity and strong performance — all while remaining interpretable.
-
-
 
 ---
 
