@@ -108,8 +108,8 @@ $DATA/
 If you find this repository useful, please consider citing our paper:
 ```
 @article{zanella2025realistic,
-title={Realistic Test-Time Adaptation of Vision-Language Models},
-author={Zanella, Maxime and Fuchs, Cl{\'e}ment and De Vleeschouwer, Christophe and Ben Ayed, Ismail}
+title={Vocabulary-free few-shot learning for Vision-Language Models},
+author={Zanella, Maxime and Fuchs, Cl{\'e}ment and Ben Ayed, Ismail and De Vleeschouwer, Christophe}
 journal={arXiv preprint arXiv:2501.03729},
   year={2025}
 }
