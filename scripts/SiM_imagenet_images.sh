@@ -1,9 +1,34 @@
 #!/bin/bash
 
-# Define the root path
-ROOT="/path/to/your/dataset/root"
+# Parse command-line arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --root)
+      ROOT="$2"
+      shift; shift
+      ;;
+    --backbone)
+      BACKBONE="$2"
+      shift; shift
+      ;;
+    --n_shots)
+      N_SHOTS="$2"
+      shift; shift
+      ;;
+    *)
+      echo "Unknown argument: $1"
+      exit 1
+      ;;
+  esac
+done
 
-# List of datasets
+# Check that all required arguments are provided
+if [[ -z "$ROOT" || -z "$BACKBONE" || -z "$N_SHOTS" ]]; then
+  echo "Usage: bash run_datasets.sh --root /path/to/data --backbone BACKBONE_NAME --n_shots N"
+  exit 1
+fi
+
+# List of datasets (excluding 'imagenet')
 datasets=(
   "sun397"
   "fgvc_aircraft"
@@ -17,10 +42,10 @@ datasets=(
   "ucf101"
 )
 
-# Loop over each dataset and run the command
+# Loop over each dataset
 for dataset in "${datasets[@]}"; do
-  echo "Running on dataset: $dataset"
-
-  #if you have cached the features and target, you can add --load in the following command
-  python main.py --dataset "$dataset" --root_path "$ROOT" --seed 1 --backbone vit_b16 --source_prompts_types imagenet_images
+  echo "Running: $dataset | Backbone: $BACKBONE | Shots: $N_SHOTS"
+  python main.py --dataset "$dataset" --root_path "$ROOT" --backbone "$BACKBONE" --n_shots "$N_SHOTS" --seed 1 --source_prompts_types imagenet_images
 done
+
+

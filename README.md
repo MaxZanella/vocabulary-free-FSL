@@ -126,7 +126,13 @@ $DATA/
 
 ## Reproducing Results
 
-The performance of **SiM** can be reproduced using the scripts. For instance, the table below reports **Top-1 accuracy** for the **CLIP ViT-L/14** backbone with **16-shot** training across 10 datasets. **best vocabulary-free results** appear in bold.
+The performance of **SiM** can be reproduced using the scripts. To run with prompts using the classes of ImageNet and the ViT-L/14 backbone in the 16-shot setting, run:
+```bash 
+bash SiM_imagenet_text.sh --root /path_to_datasets/ --backbone ViT-L/14 --n_shots 16
+```
+
+
+For instance, the table below reports **Top-1 accuracy** for the **CLIP ViT-L/14** backbone with **16-shot** training across 10 datasets. **best vocabulary-free results** appear in bold.
 
 
 | Method           | Vocab-free | SUN  | Aircraft | EuroSAT | Cars | Food | Pets | Flowers | Caltech | DTD  | UCF  | Avg  |

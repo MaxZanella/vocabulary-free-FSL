@@ -21,7 +21,7 @@ def get_arguments():
                                                                     'imagenet_images', 
                                                                     'wordnet', ])
     parser.add_argument('--method', default = 'SiM', type = str, choices = ['SiM'])
-    parser.add_argument('--seed', default=1, type=int)
+    parser.add_argument('--seed', default=None, type=int)
     parser.add_argument('--backbone', default='vit_b16', 
                         type=str, 
                         choices=['rn50', 'rn101', 'vit_b32', 'vit_b16', 'vit_l14'], 
@@ -81,7 +81,7 @@ def main():
 
     args = get_arguments()
     
-    set_random_seed(args.seed) # for reproducibility
+    #set_random_seed(args.seed) # for reproducibility
     base_rng = np.random.default_rng(args.seed)
     
     
