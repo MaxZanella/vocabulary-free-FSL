@@ -126,7 +126,7 @@ $DATA/
 
 ## Reproducing Results
 
-Refer to DATASETS.md[DATASETS.md] for instructions about the installation of the various datasets. The performance of **SiM** can be reproduced using the scripts. To run with prompts using the classes of ImageNet and the ViT-L/14 backbone in the 16-shot setting, run:
+Refer to [DATASETS.md](DATASETS.md) for instructions about the installation of the various datasets. The performance of **SiM** can be reproduced using the scripts. To run with prompts using the classes of ImageNet and the ViT-L/14 backbone in the 16-shot setting, run:
 ```bash 
 bash SiM_imagenet_text.sh --root /path_to_datasets/ --backbone ViT-L/14 --n_shots 16
 ```
