@@ -1,6 +1,6 @@
 # Vocabulary-free few-shot learning for Vision-Language Models [8<sup>th</sup>MULA@CVPR 2025]
   
-The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*](https://arxiv.org/abs/2501.03729).
+The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*]().
 
 Authors:
 [Maxime Zanella*](https://scholar.google.com/citations?user=FIoE9YIAAAAJ&hl=fr&oi=ao),
@@ -152,12 +152,7 @@ The performance of **SiM** can be reproduced using the scripts. For instance, th
 
 If you find this repository useful, please consider citing our paper:
 ```
-@article{zanella2025realistic,
-title={Vocabulary-free few-shot learning for Vision-Language Models},
-author={Zanella, Maxime and Fuchs, Cl{\'e}ment and Ben Ayed, Ismail and De Vleeschouwer, Christophe}
-journal={arXiv preprint arXiv:2501.03729},
-  year={2025}
-}
+TODO
 ```
 
 
