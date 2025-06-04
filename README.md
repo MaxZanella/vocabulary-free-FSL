@@ -126,11 +126,15 @@ $DATA/
 
 ## Reproducing Results
 
-The performance of **SiM** can be reproduced using the scripts. To run with prompts using the classes of ImageNet and the ViT-L/14 backbone in the 16-shot setting, run:
+Refer to DATASETS.md[DATASETS.md] for instructions about the installation of the various datasets. The performance of **SiM** can be reproduced using the scripts. To run with prompts using the classes of ImageNet and the ViT-L/14 backbone in the 16-shot setting, run:
 ```bash 
 bash SiM_imagenet_text.sh --root /path_to_datasets/ --backbone ViT-L/14 --n_shots 16
 ```
-
+To use the prompts obtained from Wordnet, run: 
+```bash 
+bash SiM_wordnet.sh --root /path_to_datasets/ --backbone ViT-L/14 --n_shots 16
+```
+The code for using images from ImageNet as prompts will be added in the coming days.
 
 For instance, the table below reports **Top-1 accuracy** for the **CLIP ViT-L/14** backbone with **16-shot** training across 10 datasets. **best vocabulary-free results** appear in bold.
 
