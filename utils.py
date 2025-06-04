@@ -268,3 +268,96 @@ def load_features(dataset_name,
                                                         )
 
     return train_loader, val_loader, test_loader, dataset, features_and_labels
+
+
+import nltk
+from nltk.corpus import wordnet
+import pickle
+
+def get_wordnet_prompts(args):
+    # Set custom NLTK data directory
+    nltk_data_path = os.path.join(args.root_path, 'wordnet_data')
+    os.makedirs(nltk_data_path, exist_ok=True)  # Ensure the directory exists
+    nltk.data.path.append(nltk_data_path)
+
+    # Download WordNet to the custom path
+    nltk.download('wordnet', download_dir=nltk_data_path)
+
+    # Verify that NLTK is using the custom path
+
+    # Get all words from WordNet
+    all_words = set()
+    root_terms = [
+                  'building', 
+                  'vehicle', 
+                  'food', 
+                  'flower', 
+                  'animal', 
+                  'texture', 
+                  'action',
+                  'furniture'
+                  ]
+    for r in root_terms:
+        #for synset in tqdm(wordnet.all_synsets(pos = 'n')):
+        for synset in wordnet.synsets(r, pos='n'):
+            li_words = synset.lemma_names()
+            cleaned_li_words = []
+            for w in li_words:
+                if not(w[0] in ['1', '2', '3', '4', '5', '6', '7', '8', '9']):
+                    cleaned_li_words.append(w.replace('_', ' ').replace('.', ''))
+
+            all_words.update(cleaned_li_words)
+            #print(cleaned_li_words)
+            for hyponym in synset.closure(lambda s: s.hyponyms()):
+                li_words = [w.replace('_', ' ').replace('.', '') for w in hyponym.lemma_names()]
+                all_words.update(li_words)
+                #print(li_words)
+
+    # Convert to a sorted list
+    all_words = sorted(all_words)
+
+    # # Print some sample words
+    # print(all_words[117:133])  # Print first 10 words as an example
+    # print('total number of words', len(all_words))  # Print first 10 words as an example
+    
+    with open(os.path.join(args.root_path, 'filtered_wordnet_words.pickle'), 'wb') as f:
+        pickle.dump(all_words, f)
+        
+    backbones = {
+                 'vit_b16': 'ViT-B/16',
+                 'rn50': 'RN50',
+                 'vit_b32':'ViT-B/32',
+                 'rn101': 'RN101',    
+                 'vit_l14':'ViT-L/14'   
+                }
+
+    model_name = args.backbone
+    
+    try:
+        with open(os.path.join(args.root_path, f'filtered_wordnet_textual_features_{model_name}.pickle'), 'rb') as f:
+            all_textual_features = pickle.load(f)
+    except FileNotFoundError:
+        all_textual_features = None 
+        clip_model, preprocess = clip.load(backbones[model_name])
+        batch_size = 64
+        current_start = 0
+        current_end = 0
+        texts = []
+        for jw , w in enumerate(tqdm(all_words)):
+            texts.append(f'A photo of a {w}.')
+            
+            if len(texts) == batch_size or jw == len(all_words):
+                with torch.no_grad(), torch.amp.autocast('cuda', dtype = torch.float16):
+                    texts = clip.tokenize(texts).cuda()
+                    current_end = current_start + len(texts)
+                    class_embeddings = clip_model.encode_text(texts)
+                    class_embeddings /= class_embeddings.norm(dim=-1, keepdim=True)
+                    if all_textual_features is None:
+                        all_textual_features = torch.zeros((len(all_words),class_embeddings.shape[-1]), dtype = torch.float16)
+                    all_textual_features[current_start:current_end,:] = class_embeddings[...].cpu()
+                    current_start = current_end
+                    texts = []
+        with open(os.path.join(args.root_path, f'filtered_wordnet_textual_features_{model_name}.pickle'), 'wb') as f:
+            pickle.dump(all_textual_features, f)
+
+    return all_textual_features.cuda().T

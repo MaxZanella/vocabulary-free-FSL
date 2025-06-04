@@ -72,7 +72,7 @@ def load_source_prototypes(args, clip_model):
                                           reduce = 'mean')
         
     elif args.source_prompts_types == 'wordnet':
-        raise RuntimeError('TODO: recompute prototypes instead of loading pickles')
+        clip_prototypes = uti.get_wordnet_prompts(args)
     elif args.source_prompts_types == 'imagenet_images':
         raise RuntimeError('TODO')
     return clip_prototypes
@@ -120,8 +120,6 @@ def main():
         _ = uti.pre_load_features(args, 'train', clip_model, train_loader, backbone_name = backbones[args.backbone])
         args.load = True
     if args.load:
-            
-        
         train_loader, val_loader, test_loader, dataset,\
         features_and_labels\
         = uti.load_features(args.dataset, 
@@ -140,6 +138,8 @@ def main():
     # get lambda reg values
     if args.source_prompts_types == 'imagenet_text':
         lambda_reg = 0.1
+    elif args.source_prompts_types == 'wordnet':
+        lambda_reg = 0.2
     
     # select shots
     mapped_accs = torch.zeros(args.n_random_seeds)
