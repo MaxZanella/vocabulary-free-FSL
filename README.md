@@ -18,10 +18,8 @@ In many real-world applications, class names may be unavailable, ambiguous, or p
   <img src="intro.png" alt="vocab-free-fsl" width="500">
 </div>
 
-
-**We introduce _SiM_ (Similarity Mapping)** — a simple yet powerful baseline for vocabulary-free few-shot learning with VLMs.
-
-Unlike conventional approaches that rely on textual labels and manual prompt design, SiM bypasses vocabulary entirely: it learns a **linear mapping** between similarity scores (computed between input images and a fixed set of generic prompts) and target classes — enabling classification without access to any class names.
+\
+**We introduce _SiM_ (Similarity Mapping)** — a simple yet powerful baseline for vocabulary-free few-shot learning with VLMs. Unlike conventional approaches that rely on textual labels and manual prompt design, SiM bypasses vocabulary entirely: it learns a **linear mapping** between similarity scores (computed between input images and a fixed set of generic prompts) and target classes — enabling classification without access to any class names.
 
 ### In short:
 - 🔤 **Vocabulary-free**: no class names or handcrafted prompts required.
