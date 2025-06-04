@@ -13,7 +13,7 @@ Authors:
 ## Quick Overview
 
    <div align="center" style="margin-top:20px; margin-bottom:20px;">
-      <img src="images/realistic_batch.png" alt="vocab-free-fsl" width="500">
+      <img src="intro.png" alt="vocab-free-fsl" width="500">
       <p style="font-size:75%;"><em> Current few-shot learning methods assume that target class names are known, often requiring manually fine-tuned prompts. In vocabulary-free few-shot learning, we remove this constraint and rely solely on generic prompts (e.g., derived from ImageNet classes). </em></p>
    </div>
 
