@@ -12,7 +12,14 @@ Authors:
 
 ## Quick Overview
 
-We introduce **Vocabulary-free few-shot learning for Vision-Language Models**, a setting where target class instances - that is, images - are available but their corresponding names are not.
+We propose **SiM** (Similarity Mapping), a simple yet effective baseline for **vocabulary-free few-shot learning** using Vision-Language Models (VLMs). In contrast to traditional few-shot methods that rely on predefined class names and carefully designed prompts, SiM classifies target images using **similarity scores** with a fixed set of **generic prompts** — without requiring any vocabulary or handcrafted prompts.
+
+SiM is:
+- **Vocabulary-free**: no class names needed.
+- **Lightweight**: training the mapping typically takes < 1 second.
+- **Interpretable**: learned weights reveal semantic alignments with known concepts.
+
+---
 
 
 ## Table of Contents
@@ -61,14 +68,18 @@ $DATA/
 
 If you find this repository useful, please consider citing our paper:
 ```
-@article{
+@article{zanella2025realistic,
+title={Realistic Test-Time Adaptation of Vision-Language Models},
+author={Zanella, Maxime and Fuchs, Cl{\'e}ment and De Vleeschouwer, Christophe and Ben Ayed, Ismail}
+journal={arXiv preprint arXiv:2501.03729},
+  year={2025}
 }
 ```
 
 
 ## Contact
 
-For any inquiries, please contact us at [maxime.zanella@uclouvain.be](mailto:maxime.zanella@uclouvain.be) and [clement.fuchs@uclouvain.be](mailto:clement.fuchs@uclouvain.be) or feel free to [create an issue](https://github.com/MaxZanella/StatA/issues).
+For any inquiries, please contact us at [maxime.zanella@uclouvain.be](mailto:maxime.zanella@uclouvain.be) and [clement.fuchs@uclouvain.be](mailto:clement.fuchs@uclouvain.be) or feel free to [create an issue](https://github.com/MaxZanella/vocabulary-free-FSL/issues).
 
 
 ## License
