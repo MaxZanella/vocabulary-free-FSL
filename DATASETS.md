@@ -4,9 +4,9 @@ All datasets should be under the same folder (say `$DATA`) and organized as foll
 
 ```
 $DATA/
-|–– caltech-101/
-|–– oxford_pets/
-|–– stanford_cars/
+|–– Caltech101/
+|–– OxfordPets/
+|–– StanfordCars/
 ```
 
 If you have some datasets already installed somewhere else, you can create symbolic links in `$DATA/dataset_name` that point to the original data to avoid duplicate download.
