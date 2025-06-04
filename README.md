@@ -24,11 +24,11 @@ SiM is:
 
 ## Table of Contents
 
-1. [Installation](#installation) 
-2. [Batch adaptation](#batch-adaptation)
-3. [Online adaptation](#online-adaptation)
-4. [Citation](#citation)
-5. [Contact](#contact) 
+1. [Installation](#installation)  
+2. [Basic Usage](#basic-usage)  
+3. [Reproducing Results](#reproducing-results)  
+4. [Citation](#citation)  
+5. [Contact](#contact)
 
 
 ---
@@ -84,6 +84,7 @@ For any inquiries, please contact us at [maxime.zanella@uclouvain.be](mailto:max
 
 ## License
 
+[AGPL-3.0](https://github.com/MaxZanella/vocabulary-free-FSL/blob/main/LICENSE)
 
 ## Acknowledgment
 This repository is mainly based on [CLIP](https://github.com/openai/CLIP) and [TransCLIP](https://github.com/MaxZanella/transduction-for-vlms). 
