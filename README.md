@@ -12,21 +12,26 @@ Authors:
 
 ## Quick Overview
 
-In many real-world applications, class names may be unavailable, ambiguous, or poorly defined — yet we still want to adapt Vision-Language Models (VLMs) with just a few visual examples.
+In many real-world applications, class names may be unavailable, ambiguous, or poorly defined — yet we still want to adapt Vision-Language Models (VLMs) using only a few visual examples. As shown in the figure below, traditional few-shot learning methods rely heavily on known class names and handcrafted prompts, whereas **vocabulary-free few-shot learning** eliminates this dependency by leveraging only generic prompts.
 
 <div align="center" style="margin-top:20px; margin-bottom:20px;">
   <img src="intro.png" alt="vocab-free-fsl" width="500">
   <p style="font-size:75%;"><em>Current few-shot learning methods assume that target class names are known, often requiring handcrafted or fine-tuned prompts. In vocabulary-free few-shot learning, we remove this constraint and classify images using only generic prompts, such as ImageNet classes.</em></p>
 </div>
 
-We introduce **SiM** (Similarity Mapping), a novel and efficient baseline for **vocabulary-free few-shot learning** with Vision-Language Models (VLMs). Unlike conventional approaches that rely on known class names and handcrafted textual prompts, SiM operates **without any vocabulary**: it learns a linear mapping from similarity scores (between input images and a set of generic prompts) to class assignments.
+---
 
-Key features of SiM:
-- 🔤 **Vocabulary-free**: no access to class names or manually designed prompts is required.
-- ⚡ **Lightweight**: training the mapping typically takes less than one second.
-- 🔍 **Interpretable**: learned weights offer semantic insights by linking target classes to generic concepts.
+**We introduce _SiM_ (Similarity Mapping)** — a simple yet powerful baseline for vocabulary-free few-shot learning with VLMs.
 
-SiM provides a strong and interpretable baseline for scenarios where class names are unavailable, ambiguous, or evolving — laying the groundwork for a new class of few-shot learning methods that decouple adaptation from predefined vocabularies.
+Unlike conventional approaches that rely on textual labels and manual prompt design, SiM bypasses vocabulary entirely: it learns a **linear mapping** between similarity scores (computed between input images and a fixed set of generic prompts) and target classes — enabling classification without access to any class names.
+
+### Key features:
+- 🔤 **Vocabulary-free**: no class names or handcrafted prompts required.
+- ⚡ **Lightweight**: the mapping is learned in under one second.
+- 🔍 **Interpretable**: learned weights reveal how target classes align with known concepts.
+
+SiM sets a new baseline for low-shot learning in **open-vocabulary** or **unknown-vocabulary** scenarios, offering both simplicity and strong performance — all while remaining interpretable.
+
 
 
 ---
