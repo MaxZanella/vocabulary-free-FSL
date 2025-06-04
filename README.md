@@ -32,8 +32,8 @@ In many real-world applications, class names may be unavailable, ambiguous, or p
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Method](#method)
+1. [Method](#method)
+2. [Installation](#installation)
 3. [Basic Usage](#basic-usage)  
 4. [Reproducing Results](#reproducing-results)  
 5. [Citation](#citation)  
@@ -122,6 +122,29 @@ $DATA/
 |–– eurosat/
 |–– ucf101/
 ```
+
+---
+
+## Reproducing Results
+
+The performance of **SiM** can be reproduced using the scripts. For instance, the table below reports **Top-1 accuracy** for the **CLIP ViT-L/14** backbone with **16-shot** training across 10 datasets. **best vocabulary-free results** appear in bold.
+
+
+| Method           | Vocab-free | SUN  | Aircraft | EuroSAT | Cars | Food | Pets | Flowers | Caltech | DTD  | UCF  | Avg  |
+|------------------|----------|------|----------|---------|------|------|------|---------|---------|------|------|------|
+| CoOp             | ✗        | 77.9 | 53.0     | 86.7    | 87.4 | 90.2 | 94.5 | 98.6    | 97.5    | 73.7 | 86.7 | 84.6 |
+| TIP-Adapter-F    | ✗        | 79.6 | 55.8     | 86.1    | 88.1 | 91.6 | 94.6 | 98.3    | 97.5    | 74.0 | 87.4 | 85.3 |
+| TaskRes          | ✗        | 76.9 | 55.0     | 84.3    | 87.6 | 91.5 | 94.7 | 97.8    | 97.3    | 74.4 | 86.6 | 84.6 |
+| MaPLe            | ✗        | 78.8 | 46.3     | 85.4    | 83.6 | 92.0 | 95.4 | 97.4    | 97.2    | 72.7 | 86.5 | 83.5 |
+| CLIP-LoRA        | ✗        | 79.4 | 66.2     | 93.1    | 90.9 | 89.9 | 94.3 | 99.0    | 97.3    | 76.5 | 89.9 | 87.7 |
+| One-to-One       | ✅       | 26.7 | 2.9      | 47.1    | 5.9  | 20.5 | 72.8 | 18.6    | 77.1    | 29.4 | 43.6 | 34.4 |
+| BLM              | ✅       | 34.5 | 3.1      | 53.4    | 2.7  | 25.0 | 58.8 | 24.5    | 89.9    | 43.7 | 50.8 | 38.7 |
+| centroids        | ✅       | **74.9** | 51.8     | 81.8    | 81.3 | 88.2 | 88.6 | **98.5** | 96.6    | 67.3 | 83.8 | 81.3 |
+| **SiM (ours)**   | ✅       | 74.3 | **52.8** | **90.1**| **84.0** | **89.6** | **93.5** | **98.8** | **97.3** | **73.1** | **85.7** | **83.9** |
+
+*Note: ✅ = vocabulary-free method.*
+
+
 
 ---
 
