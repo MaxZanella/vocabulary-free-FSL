@@ -101,6 +101,8 @@ $DATA/
 |–– ucf101/
 ```
 
+---
+
 ## Citation
 
 If you find this repository useful, please consider citing our paper:
