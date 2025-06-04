@@ -34,10 +34,9 @@ In many real-world applications, class names may be unavailable, ambiguous, or p
 
 1. [Method](#method)
 2. [Installation](#installation)
-3. [Basic Usage](#basic-usage)  
-4. [Reproducing Results](#reproducing-results)  
-5. [Citation](#citation)  
-6. [Contact](#contact)
+3. [Reproducing Results](#reproducing-results)  
+4. [Citation](#citation)  
+5. [Contact](#contact)
 
 
 ---
