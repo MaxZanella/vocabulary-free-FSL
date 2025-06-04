@@ -7,6 +7,7 @@ from datasets import get_all_dataloaders
 import utils as uti
 from tqdm import tqdm
 import clip
+import datasets as dts
 
 def get_arguments():
     
@@ -15,7 +16,10 @@ def get_arguments():
     # General arguments
     parser.add_argument('--dataset', default='dtd', help='dataset name', type=str)
     parser.add_argument('--root_path', default='./datasets', type=str)
-    #parser.add_argument('--method', default='StatA', type=str, choices=['StatA', 'TransCLIP', 'Dirichlet', 'ZLaP', 'TDA'])
+    parser.add_argument('--source_prompts_types', 
+                        default='imagenet_text', type=str, choices=['imagenet_text', 
+                                                                    'imagenet_images', 
+                                                                    'wordnet', ])
     parser.add_argument('--seed', default=1, type=int)
     parser.add_argument('--backbone', default='vit_b16', 
                         type=str, 
@@ -58,6 +62,21 @@ def select_shots(args, base_rng, train_labels, train_features):
         shots_features[k*n_shots:(k+1)*n_shots,...] = train_features[mask,...][selected_shots_idx,...]
         shots_labels[k*n_shots:(k+1)*n_shots] = k
     return shots_features, shots_labels, shots_indexes
+
+def load_source_prototypes(args, clip_model):
+    if args.source_prompts_types == 'imagenet_text':
+        imagenet_dataset = dts.dataset_list['imagenet'](args.root_path, 
+                                                        0, 
+                                                         preprocess=None, 
+                                                         train_preprocess=None, 
+                                                         test_preprocess=None, 
+                                                         load_cache=False, 
+                                                         load_pre_feat=False)
+        clip_prototypes = uti.clip_classifier(imagenet_dataset.classnames, 
+                                          imagenet_dataset.template, 
+                                          clip_model,
+                                          reduce = 'mean')
+    return clip_prototypes
 
 def main():
 
@@ -118,6 +137,11 @@ def main():
                             splits = ['train','test'],
                             load_loaders=False)
         train_features, train_labels, test_features, test_labels = features_and_labels
+        
+    # load source prototypes
+    source_prototypes = load_source_prototypes(args, clip_model)
+    
+    clip_model = clip_model.to('cpu')  # unload CLIP model from VRAM
     
     # select shots
     for jseed in range(args.n_random_seeds):
@@ -126,7 +150,7 @@ def main():
     print(test_features.shape)
     print(train_features.shape)
         
-    clip_model = clip_model.to('cpu')  # unload CLIP model from VRAM
+    
 
     acc_tot = 0
     acc_zs_tot = 0
