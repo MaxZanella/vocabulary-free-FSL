@@ -19,13 +19,12 @@ In many real-world applications, class names may be unavailable, ambiguous, or p
   <p style="font-size:75%;"><em>Current few-shot learning methods assume that target class names are known, often requiring handcrafted or fine-tuned prompts. In vocabulary-free few-shot learning, we remove this constraint and classify images using only generic prompts, such as ImageNet classes.</em></p>
 </div>
 
----
 
 **We introduce _SiM_ (Similarity Mapping)** — a simple yet powerful baseline for vocabulary-free few-shot learning with VLMs.
 
 Unlike conventional approaches that rely on textual labels and manual prompt design, SiM bypasses vocabulary entirely: it learns a **linear mapping** between similarity scores (computed between input images and a fixed set of generic prompts) and target classes — enabling classification without access to any class names.
 
-### Key features:
+### In short:
 - 🔤 **Vocabulary-free**: no class names or handcrafted prompts required.
 - ⚡ **Lightweight**: the mapping is learned in under one second.
 - 🔍 **Interpretable**: learned weights reveal how target classes align with known concepts.
