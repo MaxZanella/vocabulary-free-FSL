@@ -65,17 +65,14 @@ def select_shots(args, base_rng, train_labels, train_features):
 
 def load_source_prototypes(args, clip_model):
     if args.source_prompts_types == 'imagenet_text':
-        imagenet_dataset = dts.dataset_list['imagenet'](args.root_path, 
-                                                        0, 
-                                                         preprocess=None, 
-                                                         train_preprocess=None, 
-                                                         test_preprocess=None, 
-                                                         load_cache=False, 
-                                                         load_pre_feat=False)
-        clip_prototypes = uti.clip_classifier(imagenet_dataset.classnames, 
-                                          imagenet_dataset.template, 
+        clip_prototypes = uti.clip_classifier(dts.imagenet.imagenet_classes, 
+                                          dts.imagenet.imagenet_templates, 
                                           clip_model,
                                           reduce = 'mean')
+    elif args.source_prompts_types == 'wordnet':
+        raise RuntimeError('TODO: recompute prototypes instead of loading pickles')
+    elif args.source_prompts_types == 'imagenet_images':
+        raise RuntimeError('TODO')
     return clip_prototypes
 
 def main():
@@ -140,23 +137,17 @@ def main():
         
     # load source prototypes
     source_prototypes = load_source_prototypes(args, clip_model)
+    print(source_prototypes.shape)
     
     clip_model = clip_model.to('cpu')  # unload CLIP model from VRAM
     
     # select shots
     for jseed in range(args.n_random_seeds):
         shots_features, shots_labels, shots_indexes = select_shots(args, base_rng, train_labels, train_features)
-    
-    print(test_features.shape)
-    print(train_features.shape)
         
-    
-
     acc_tot = 0
     acc_zs_tot = 0
-    
-  
-        
+     
     print("\n============================")
     print("      Final Results         ")
     print("============================")
