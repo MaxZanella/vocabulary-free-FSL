@@ -1,6 +1,6 @@
-# Vocabulary-free few-shot learning for Vision-Language Models [8<sup>th</sup>MULA@CVPR 2025]
+# Vocabulary-free few-shot learning for Vision-Language Models [8<sup>th</sup> MULA@CVPR 2025]
   
-The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*](https://arxiv.org/abs/2501.03729).
+The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*]().
 
 Authors:
 [Maxime Zanella*](https://scholar.google.com/citations?user=FIoE9YIAAAAJ&hl=fr&oi=ao),
@@ -18,10 +18,9 @@ We introduce **Vocabulary-free few-shot learning for Vision-Language Models**, a
 ## Table of Contents
 
 1. [Installation](#installation) 
-2. [Batch adaptation](#batch-adaptation)
-3. [Online adaptation](#online-adaptation)
-4. [Citation](#citation)
-5. [Contact](#contact) 
+2. [Running Bechnmarks](#running_benchmarks)
+3. [Citation](#citation)
+4. [Contact](#contact) 
 
 
 ---
@@ -56,6 +55,7 @@ $DATA/
 |–– eurosat/
 |–– ucf101/
 ```
+## Running benchmarks
 
 ## Citation
 

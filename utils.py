@@ -71,9 +71,9 @@ def clip_classifier(classnames, template, clip_model, reduce='mean', gpt=False, 
     return clip_weights
 
 
-def get_all_features(args, test_loader, dataset, clip_model):
+def get_all_features(args, test_loader, dataset, clip_model, backbone_name):
     clip_prototypes = clip_classifier(dataset.classnames, dataset.template, clip_model, reduce=None)
-    test_features, test_labels = pre_load_features(args, "test", clip_model, test_loader)
+    test_features, test_labels = pre_load_features(args, "test", clip_model, test_loader, backbone_name=backbone_name)
 
     return test_features, test_labels, clip_prototypes
 
@@ -129,7 +129,9 @@ def build_cache_model(cfg, clip_model, train_loader_cache, n_views=0, reduce=Non
 
     return cache_keys, cache_values
 
-def pre_load_features(args, split, clip_model, loader, n_views=1):
+def pre_load_features(args, split, clip_model, loader, n_views=1, backbone_name = 'ViT-B/16',):
+    model_cache_name = backbone_name.replace('/', '_')
+    model_cache_name = model_cache_name.replace('-', '_')
 
     if  not args.load:
         features, labels = [], []
@@ -173,12 +175,12 @@ def pre_load_features(args, split, clip_model, loader, n_views=1):
         elif n_views==1:
             features, labels = torch.cat(features), torch.cat(labels)
 
-        torch.save(features, args.cache_dir + "/" + split + f'_{args.backbone}' + "_features.pt")
+        torch.save(features, args.cache_dir + "/" +  f'{model_cache_name}_' + split + "_features.pt")
         torch.save(labels, args.cache_dir + "/" + split + "_target.pt")
         
     else:
         try:
-            features = torch.load(args.cache_dir + "/" + split +  f'_{args.backbone}' + "_features.pt")
+            features = torch.load(args.cache_dir + "/" +   f'{model_cache_name}_' + split + "_features.pt")
             labels = torch.load(args.cache_dir + "/" + split + "_target.pt")
         except FileNotFoundError:
             print("Cache not found...")
@@ -197,7 +199,7 @@ def get_samples_feature_and_labels(cache_dir, splits = ['test'], backbone_name =
             try:
                 _features = torch.load(features_path).cuda()
             except FileNotFoundError:
-                raise FileNotFoundError(f'Could not find cached features at {features_path}. Run compute_features.py or check the --root_cache_path argument. ')
+                raise FileNotFoundError(f'Could not find cached features at {features_path}. Run the command without --load first. ')
             _labels = torch.load(os.path.join(cache_dir, f'{spl}_target.pt')).cuda()
             out.append(_features)
             out.append(_labels)
@@ -239,7 +241,7 @@ def load_features(dataset_name,
                   load_loaders = False,):
 
     cfg = {}
-    print(f'============ DATASET : {dataset_name}')
+    #print(f'============ DATASET : {dataset_name}')
     
     
     cfg['dataset'] = dataset_name #datasets[dataset_name]
@@ -250,17 +252,15 @@ def load_features(dataset_name,
     cfg['cache_dir'] = cache_dir
     if dataset_name == 'imagenet':
         cfg['load_cache'] = False
-    print('load_loaders : ', load_loaders)
     if load_loaders:
         train_loader, val_loader, test_loader, dataset = dts.get_all_dataloaders(cfg, preprocess, dirichlet=None)
     else:
-        print('pouet 123')
         if dataset_name != 'imagenet':
             dataset = dts.dataset_list[dataset_name](cfg['root_path'], cfg['shots'])
         else:
             dataset = dts.dataset_list[dataset_name](cfg['root_path'], cfg['shots'], None)
         train_loader, val_loader, test_loader = None,None,None
-        
+
     features_and_labels = get_samples_feature_and_labels(cache_dir,
                                                         splits = splits,
                                                         backbone_name = backbone_name,
