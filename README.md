@@ -12,7 +12,7 @@ Authors:
 
 ## Quick Overview
 
-In many real-world applications, class names may be unavailable, ambiguous, or poorly defined — yet we still want to adapt Vision-Language Models (VLMs) using only a few visual examples. As shown in the figure below, traditional few-shot learning methods rely heavily on known class names and handcrafted prompts, whereas **vocabulary-free few-shot learning** eliminates this dependency by leveraging only generic prompts (e.g., from ImageNet classes).
+In many real-world applications, class names may be unavailable, ambiguous, or poorly defined — yet we still want to adapt Vision-Language Models (VLMs) using only a few visual examples. As shown in the figure below, traditional few-shot learning methods rely heavily on known class names and handcrafted prompts, whereas **vocabulary-free few-shot learning** eliminates this dependency by leveraging only generic prompts (e.g., from ImageNet classes):
 
 <div align="center" style="margin-top:20px; margin-bottom:20px;">
   <img src="intro.png" alt="vocab-free-fsl" width="500">
