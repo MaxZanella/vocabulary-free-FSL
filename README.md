@@ -165,7 +165,12 @@ For instance, the table below reports **Top-1 accuracy** for the **CLIP ViT-L/14
 
 If you find this repository useful, please consider citing our paper:
 ```
-TODO
+@article{zanella2025vocabulary,
+  title={Vocabulary-free few-shot learning for Vision-Language Models},
+  author={Zanella, Maxime and Fuchs, Cl{\'e}ment and Ayed, Ismail Ben and De Vleeschouwer, Christophe},
+  journal={arXiv preprint arXiv:2506.04005},
+  year={2025}
+}
 ```
 
 
