@@ -1,6 +1,6 @@
 # Vocabulary-free few-shot learning for Vision-Language Models
   
-The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*]().
+The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*](https://arxiv.org/abs/2506.04005).
 
 Authors:
 [Maxime Zanella*](https://scholar.google.com/citations?user=FIoE9YIAAAAJ&hl=fr&oi=ao),
