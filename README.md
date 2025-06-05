@@ -1,5 +1,9 @@
 # Vocabulary-free few-shot learning for Vision-Language Models
-  
+
+<a href="https://arxiv.org/abs/2506.04005" style="vertical-align:middle; display:inline;">
+    <img src="https://img.shields.io/badge/cs.CV-arXiv%3A2506.04005-B31B1B.svg" class="plain" style="height:25px;" />
+</a>
+
 The official implementation of [*Vocabulary-free few-shot learning for Vision-Language Models*](https://arxiv.org/abs/2506.04005).
 
 Authors:
